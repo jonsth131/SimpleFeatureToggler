@@ -28,16 +28,6 @@ namespace Tests
 
             isFeatureEnabled.Should().BeFalse();
         }
-
-        [Test]
-        public void TestInvalidDate()
-        {
-            var dummy = new InvalidDateDummy();
-
-            Action act = () => dummy.IsFeatureEnabled();
-
-            act.ShouldThrow<FormatException>();
-        }
     }
 
     [FeatureOn("1900-01-01")]
@@ -50,8 +40,4 @@ namespace Tests
     {
     }
 
-    [FeatureOn("INVALID DATE")]
-    public class InvalidDateDummy
-    {
-    }
 }
