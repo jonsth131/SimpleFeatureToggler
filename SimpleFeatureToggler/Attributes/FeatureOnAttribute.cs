@@ -5,17 +5,46 @@ namespace SimpleFeatureToggler.Attributes
     [AttributeUsage(AttributeTargets.Class)]
     public class FeatureOnAttribute : Attribute
     {
-        public bool IsEnabled { get; }
+        public bool FeatureOn { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
 
-        public FeatureOnAttribute(bool b)
+        public bool IsEnabled()
         {
-            IsEnabled = b;
+            if (FeatureOn)
+            {
+                return FeatureOn;
+            }
+            if (string.IsNullOrEmpty(StartDate) && string.IsNullOrEmpty(EndDate))
+            {
+                return FeatureOn;
+            }
+            if (string.IsNullOrEmpty(StartDate))
+            {
+                return !IsEndDateReached();
+            }
+            if (string.IsNullOrEmpty(EndDate))
+            {
+                return IsStartDateReached();
+            }
+            return IsDatesInRange();
         }
 
-        public FeatureOnAttribute(string date)
+        private bool IsDatesInRange()
         {
-            var dt = DateTime.Parse(date);
-            IsEnabled = dt <= DateTime.Now;
+            return IsStartDateReached() && !IsEndDateReached();
+        }
+
+        private bool IsStartDateReached()
+        {
+            var dt = DateTime.Parse(StartDate);
+            return dt <= DateTime.Now;
+        }
+
+        private bool IsEndDateReached()
+        {
+            var dt = DateTime.Parse(EndDate);
+            return dt <= DateTime.Now;
         }
     }
 }

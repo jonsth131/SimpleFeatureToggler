@@ -2,39 +2,39 @@
 using NUnit.Framework;
 using SimpleFeatureToggler.Attributes;
 using SimpleFeatureToggler.Extensions;
-using SimpleFeatureToggler.Util;
 
 namespace Tests
 {
     [TestFixture]
-    public class ExtensionTests
+    public class FeatureToggleEndDateAttributeTest
     {
         [Test]
-        public void TestObjectWithNoAttribute()
+        public void TestPassedEndDate()
         {
-            var dummy = new EmptyClass();
+            var dummy = new FalseEndDateDummy();
 
             var isFeatureEnabled = dummy.IsFeatureEnabled();
 
-            isFeatureEnabled.Should().BeTrue();
+            isFeatureEnabled.Should().BeFalse();
         }
 
         [Test]
-        public void TestDevEnvToggle()
+        public void TestFutureEndDate()
         {
-            var dummy = new ExtensionTestClass();
+            var dummy = new TrueEndDateDummy();
 
             var isFeatureEnabled = dummy.IsFeatureEnabled();
 
             isFeatureEnabled.Should().BeTrue();
         }
 
-        [FeatureOn(FeatureOn = false)]
-        private class ExtensionTestClass : DevEnvToggle
+        [FeatureOn(EndDate = "1900-01-01")]
+        private class FalseEndDateDummy
         {
         }
 
-        private class EmptyClass
+        [FeatureOn(EndDate = "2900-01-01")]
+        private class TrueEndDateDummy
         {
         }
     }

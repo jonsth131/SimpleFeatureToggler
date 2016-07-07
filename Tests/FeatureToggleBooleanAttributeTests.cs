@@ -27,15 +27,75 @@ namespace Tests
 
             isFeatureEnabled.Should().BeFalse();
         }
-    }
 
-    [FeatureOn(false)]
-    public class FalseBooleanDummy
-    {
-    }
+        [Test]
+        public void TestFeatureOnAttributeFutureEndDate()
+        {
+            var dummy = new TrueBooleanFutureEndDateDummy();
 
-    [FeatureOn(true)]
-    public class TrueBooleanDummy
-    {
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeTrue();
+        }
+
+        [Test]
+        public void TestFeatureOnAttributePassedEndDate()
+        {
+            var dummy = new TrueBooleanPassedEndDateDummy();
+
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeTrue();
+        }
+
+        [Test]
+        public void TestFalseFeatureOnAttributeFutureEndDate()
+        {
+            var dummy = new FalseBooleanPassedEndDateDummy();
+
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeFalse();
+        }
+
+        [Test]
+        public void TestFalseFeatureOnAttributePassedEndDate()
+        {
+            var dummy = new FalseooleanFutureEndDateDummy();
+
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeTrue();
+        }
+
+        [FeatureOn(FeatureOn = false)]
+        private class FalseBooleanDummy
+        {
+        }
+
+        [FeatureOn(FeatureOn = true)]
+        private class TrueBooleanDummy
+        {
+        }
+
+        [FeatureOn(FeatureOn = true, EndDate = "1900-01-01")]
+        private class TrueBooleanPassedEndDateDummy
+        {
+        }
+
+        [FeatureOn(FeatureOn = true, EndDate = "2900-01-01")]
+        private class TrueBooleanFutureEndDateDummy
+        {
+        }
+
+        [FeatureOn(FeatureOn = false, EndDate = "1900-01-01")]
+        private class FalseBooleanPassedEndDateDummy
+        {
+        }
+
+        [FeatureOn(FeatureOn = false, EndDate = "2900-01-01")]
+        private class FalseooleanFutureEndDateDummy
+        {
+        }
     }
 }

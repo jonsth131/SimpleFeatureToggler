@@ -27,16 +27,60 @@ namespace Tests
 
             isFeatureEnabled.Should().BeFalse();
         }
-    }
 
-    [FeatureOn("1900-01-01")]
-    public class TrueDateTimeDummy
-    {
-    }
+        [Test]
+        public void TestPassedStartDateAndFutureEndDate()
+        {
+            var dummy = new TrueStartAndEndDateTimeDummy();
 
-    [FeatureOn("2900-01-01")]
-    public class FalseDateTimeDummy
-    {
-    }
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
 
+            isFeatureEnabled.Should().BeTrue();
+        }
+
+        [Test]
+        public void TestPassedStartDateAndPassedEndDate()
+        {
+            var dummy = new FalseStartAndEndDateTimeDummy();
+
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeFalse();
+        }
+
+        [Test]
+        public void TestFutureStartDateAndFutureEndDate()
+        {
+            var dummy = new FalseFutureStartAndEndDateTimeDummy();
+
+            var isFeatureEnabled = dummy.IsFeatureEnabled();
+
+            isFeatureEnabled.Should().BeFalse();
+        }
+
+        [FeatureOn(StartDate = "1900-01-01")]
+        private class TrueDateTimeDummy
+        {
+        }
+
+        [FeatureOn(StartDate = "2900-01-01")]
+        private class FalseDateTimeDummy
+        {
+        }
+
+        [FeatureOn(StartDate = "1900-01-01", EndDate = "2900-01-01")]
+        private class TrueStartAndEndDateTimeDummy
+        {
+        }
+
+        [FeatureOn(StartDate = "1900-01-01", EndDate = "1900-10-01")]
+        private class FalseStartAndEndDateTimeDummy
+        {
+        }
+
+        [FeatureOn(StartDate = "2900-01-01", EndDate = "2900-10-01")]
+        private class FalseFutureStartAndEndDateTimeDummy
+        {
+        }
+    }
 }

@@ -15,7 +15,7 @@ namespace SimpleFeatureToggler.Extensions
         private static bool CheckIfAttributeIsEnabled(MemberInfo type)
         {
             var attribute = type.GetCustomAttribute<FeatureOnAttribute>();
-            return attribute == null || attribute.IsEnabled;
+            return attribute == null || attribute.IsEnabled();
         }
 
         private static bool CheckDevEnvToggle(object obj)
