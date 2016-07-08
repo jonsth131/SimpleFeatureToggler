@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleFeatureToggler.Util;
 
 namespace SimpleFeatureToggler.Attributes
 {
@@ -11,40 +12,16 @@ namespace SimpleFeatureToggler.Attributes
 
         public bool IsEnabled()
         {
-            if (FeatureOn)
+            if (FeatureOn || DatesEntered())
             {
                 return FeatureOn;
             }
-            if (string.IsNullOrEmpty(StartDate) && string.IsNullOrEmpty(EndDate))
-            {
-                return FeatureOn;
-            }
-            if (string.IsNullOrEmpty(StartDate))
-            {
-                return !IsEndDateReached();
-            }
-            if (string.IsNullOrEmpty(EndDate))
-            {
-                return IsStartDateReached();
-            }
-            return IsDatesInRange();
+            return DateToggleHelper.IsFeatureEnabledBasedOnDates(StartDate, EndDate);
         }
 
-        private bool IsDatesInRange()
+        private bool DatesEntered()
         {
-            return IsStartDateReached() && !IsEndDateReached();
-        }
-
-        private bool IsStartDateReached()
-        {
-            var dt = DateTime.Parse(StartDate);
-            return dt <= DateTime.Now;
-        }
-
-        private bool IsEndDateReached()
-        {
-            var dt = DateTime.Parse(EndDate);
-            return dt <= DateTime.Now;
+            return string.IsNullOrEmpty(StartDate) && string.IsNullOrEmpty(EndDate);
         }
     }
 }

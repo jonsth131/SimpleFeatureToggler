@@ -38,6 +38,7 @@
     <Compile Include="Attributes\FeatureOnAttribute.cs" />
     <Compile Include="Extensions\CheckToggleExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\DateToggleHelper.cs" />
     <Compile Include="Util\DevEnvToggle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
