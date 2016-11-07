@@ -1,10 +1,34 @@
 ﻿using System;
+using System.Configuration;
 
-namespace SimpleFeatureToggler.Util
+namespace SimpleFeatureToggler.Toggles
 {
-    internal class DateToggleHelper
+    public abstract class DateToggle
     {
-        internal static bool IsFeatureEnabledBasedOnDates(string startDate, string endDate)
+        public bool IsEnabled()
+        {
+            var startDate = GetDate("StartDate");
+            var endDate = GetDate("EndDate");
+            return IsFeatureEnabledBasedOnDates(startDate, endDate);
+        }
+
+        private string GetDate(string postfix)
+        {
+            var name = GetType().Name + "." + postfix;
+            var reader = new AppSettingsReader();
+            string date;
+            try
+            {
+                date = (string) reader.GetValue(name, typeof(string));
+            }
+            catch
+            {
+                return null;
+            }
+            return date;
+        }
+
+        private static bool IsFeatureEnabledBasedOnDates(string startDate, string endDate)
         {
             if (string.IsNullOrEmpty(startDate))
             {

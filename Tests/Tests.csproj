@@ -52,11 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionTests.cs" />
-    <Compile Include="FeatureToggleBooleanAttributeTests.cs" />
-    <Compile Include="FeatureToggleDateTimeAttributeTests.cs" />
-    <Compile Include="FeatureToggleEndDateAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Toggles\DateToggleTests.cs" />
+    <Compile Include="Toggles\SimpleToggleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

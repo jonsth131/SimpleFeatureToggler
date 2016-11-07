@@ -1,19 +1,18 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using SimpleFeatureToggler.Attributes;
-using SimpleFeatureToggler.Extensions;
+using SimpleFeatureToggler.Toggles;
 
-namespace Tests
+namespace Tests.Toggles
 {
     [TestFixture]
-    public class FeatureToggleDateTimeAttributeTests
+    public class DateToggleTests
     {
         [Test]
         public void TestPassedDate()
         {
             var dummy = new TrueDateTimeDummy();
 
-            var isFeatureEnabled = dummy.IsFeatureEnabled();
+            var isFeatureEnabled = dummy.IsEnabled();
 
             isFeatureEnabled.Should().BeTrue();
         }
@@ -23,7 +22,7 @@ namespace Tests
         {
             var dummy = new FalseDateTimeDummy();
 
-            var isFeatureEnabled = dummy.IsFeatureEnabled();
+            var isFeatureEnabled = dummy.IsEnabled();
 
             isFeatureEnabled.Should().BeFalse();
         }
@@ -33,7 +32,7 @@ namespace Tests
         {
             var dummy = new TrueStartAndEndDateTimeDummy();
 
-            var isFeatureEnabled = dummy.IsFeatureEnabled();
+            var isFeatureEnabled = dummy.IsEnabled();
 
             isFeatureEnabled.Should().BeTrue();
         }
@@ -43,7 +42,7 @@ namespace Tests
         {
             var dummy = new FalseStartAndEndDateTimeDummy();
 
-            var isFeatureEnabled = dummy.IsFeatureEnabled();
+            var isFeatureEnabled = dummy.IsEnabled();
 
             isFeatureEnabled.Should().BeFalse();
         }
@@ -53,33 +52,28 @@ namespace Tests
         {
             var dummy = new FalseFutureStartAndEndDateTimeDummy();
 
-            var isFeatureEnabled = dummy.IsFeatureEnabled();
+            var isFeatureEnabled = dummy.IsEnabled();
 
             isFeatureEnabled.Should().BeFalse();
         }
 
-        [FeatureOn(StartDate = "1900-01-01")]
-        private class TrueDateTimeDummy
+        private class TrueDateTimeDummy : DateToggle
         {
         }
 
-        [FeatureOn(StartDate = "2900-01-01")]
-        private class FalseDateTimeDummy
+        private class FalseDateTimeDummy : DateToggle
         {
         }
 
-        [FeatureOn(StartDate = "1900-01-01", EndDate = "2900-01-01")]
-        private class TrueStartAndEndDateTimeDummy
+        private class TrueStartAndEndDateTimeDummy : DateToggle
         {
         }
 
-        [FeatureOn(StartDate = "1900-01-01", EndDate = "1900-10-01")]
-        private class FalseStartAndEndDateTimeDummy
+        private class FalseStartAndEndDateTimeDummy : DateToggle
         {
         }
 
-        [FeatureOn(StartDate = "2900-01-01", EndDate = "2900-10-01")]
-        private class FalseFutureStartAndEndDateTimeDummy
+        private class FalseFutureStartAndEndDateTimeDummy : DateToggle
         {
         }
     }
