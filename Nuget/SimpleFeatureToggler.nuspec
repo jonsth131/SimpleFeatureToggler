@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SimpleFeatureToggler</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>SimpleFeatureToggler</title>
         <authors>Jonas S</authors>
         <owners>https://github.com/jonsth131</owners>
@@ -13,6 +13,7 @@
 		<licenseUrl>https://github.com/jonsth131/SimpleFeatureToggler/blob/master/LICENSE.md</licenseUrl>
     </metadata>
     <files>
-        <file src="..\SimpleFeatureToggler\bin\release\SimpleFeatureToggler.dll" target="lib\net45\SimpleFeatureToggler.dll" />
+        <file src="..\SimpleFeatureToggler\bin\release\net45\SimpleFeatureToggler.dll" target="lib\net45\SimpleFeatureToggler.dll" />
+		<file src="..\SimpleFeatureToggler\bin\release\net40\SimpleFeatureToggler.dll" target="lib\net40\SimpleFeatureToggler.dll" />
     </files>
 </package>
