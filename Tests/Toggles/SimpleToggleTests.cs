@@ -37,15 +37,15 @@ namespace Tests.Toggles
             isEnabled.Should().BeFalse();
         }
 
-        public class SimpleToggleDummy : SimpleToggle
+        private class SimpleToggleDummy : SimpleToggle
         {
         }
 
-        public class SimpleToggleFalseDummy : SimpleToggle
+        private class SimpleToggleFalseDummy : SimpleToggle
         {
         }
 
-        public class SimpleToggleTrueDummy : SimpleToggle
+        private class SimpleToggleTrueDummy : SimpleToggle
         {
         }
     }

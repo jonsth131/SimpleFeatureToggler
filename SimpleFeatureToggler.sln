@@ -12,7 +12,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release 4.0|Any CPU = Release 4.0|Any CPU
 		Release 4.5|Any CPU = Release 4.5|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -22,8 +21,6 @@ Global
 		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Release 4.5|Any CPU.ActiveCfg = Release 4.5|Any CPU
 		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Release 4.5|Any CPU.Build.0 = Release 4.5|Any CPU
 		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Release 4.5|Any CPU.Deploy.0 = Release 4.5|Any CPU
-		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Release|Any CPU.ActiveCfg = Release 4.0|Any CPU
-		{D3F5C730-D3A8-4068-94FC-4786E78BDFEE}.Release|Any CPU.Build.0 = Release 4.0|Any CPU
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release 4.0|Any CPU.ActiveCfg = Release 4.0|Any CPU
@@ -31,8 +28,6 @@ Global
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release 4.5|Any CPU.ActiveCfg = Release 4.5|Any CPU
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release 4.5|Any CPU.Build.0 = Release 4.5|Any CPU
 		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release 4.5|Any CPU.Deploy.0 = Release 4.5|Any CPU
-		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{174238DD-2D89-483F-BA49-2C11EF47E461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
