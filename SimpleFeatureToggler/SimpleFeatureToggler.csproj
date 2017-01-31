@@ -34,7 +34,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release 4.0|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\net40\</OutputPath>    
+    <OutputPath>bin\Release\net40\</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -42,12 +42,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbUtils\DbReadCommands.cs" />
+    <Compile Include="DbUtils\DbWriteCommands.cs" />
+    <Compile Include="DbUtils\DbReader.cs" />
+    <Compile Include="DbUtils\DbToggleReader.cs" />
+    <Compile Include="DbUtils\DbWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toggles\DateToggle.cs" />
+    <Compile Include="Toggles\DbToggle.cs" />
     <Compile Include="Toggles\GenericToggle.cs" />
     <Compile Include="Toggles\SimpleToggle.cs" />
   </ItemGroup>
