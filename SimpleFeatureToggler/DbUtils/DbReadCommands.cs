@@ -7,7 +7,7 @@ namespace SimpleFeatureToggler.DbUtils
     {
         internal static SqlDataReader SelectToggleValueCommand(string toggle, SqlCommand command)
         {
-            command.CommandText = @"SELECT Toggle FROM [dbo].[FeatureToggles] WHERE ToggleName = @ToggleName";
+            command.CommandText = @"SELECT Id, Toggle FROM [dbo].[FeatureToggles] WHERE ToggleName = @ToggleName";
             command.Parameters.AddWithValue("@ToggleName", toggle);
 
             return command.ExecuteReader();

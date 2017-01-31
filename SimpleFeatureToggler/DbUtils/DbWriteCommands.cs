@@ -22,6 +22,12 @@ namespace SimpleFeatureToggler.DbUtils
 
         internal static void CreateToggleRow(string toggleName, string connectionString)
         {
+            const bool toggle = false;
+            CreateToggleRow(toggleName, toggle, connectionString);
+        }
+
+        internal static void CreateToggleRow(string toggleName, bool toggle, string connectionString)
+        {
             using (var connection = new SqlConnection(connectionString))
             using (var command = new SqlCommand())
             {
@@ -29,8 +35,26 @@ namespace SimpleFeatureToggler.DbUtils
 
                 command.Connection = connection;
 
-                command.CommandText = @"INSERT INTO [dbo].[FeatureToggles] (ToggleName, Toggle) VALUES (@ToggleName, 0)";
+                command.CommandText = @"INSERT INTO [dbo].[FeatureToggles] (ToggleName, Toggle) VALUES (@ToggleName, @Toggle)";
                 command.Parameters.AddWithValue("@ToggleName", toggleName);
+                command.Parameters.AddWithValue("@Toggle", toggle);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        internal static void UpdateToggleRow(string toggleName, bool toggle, string connectionString)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+
+                command.Connection = connection;
+
+                command.CommandText = @"UPDATE [dbo].[FeatureToggles] SET Toggle=@Toggle WHERE ToggleName=@ToggleName";
+                command.Parameters.AddWithValue("@ToggleName", toggleName);
+                command.Parameters.AddWithValue("@Toggle", toggle);
 
                 command.ExecuteNonQuery();
             }

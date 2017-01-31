@@ -55,7 +55,7 @@ namespace SimpleFeatureToggler.DbUtils
 
             while (reader.Read())
             {
-                toggle = (bool) reader[0];
+                toggle = (bool) reader[1];
             }
             reader.Close();
 
