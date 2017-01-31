@@ -59,6 +59,7 @@
     <Compile Include="Toggles\DbToggle.cs" />
     <Compile Include="Toggles\GenericToggle.cs" />
     <Compile Include="Toggles\SimpleToggle.cs" />
+    <Compile Include="Toggles\ToggleBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
